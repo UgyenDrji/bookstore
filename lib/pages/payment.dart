@@ -26,9 +26,11 @@ class _PaymentInfoState extends State<PaymentInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xff8CC0DE),
+          centerTitle: true,
           title: Text(
             "Payment Information",
-            style: myStyle(24,Colors.green,FontWeight.bold),
+            style: myStyle(24,Colors.black,FontWeight.bold),
           ),
           // centerTitle: true,
         ),
@@ -43,28 +45,33 @@ class _PaymentInfoState extends State<PaymentInfo> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 20,),
                       Text(
                         "Customer Name: ${ms.userDetails[0].userName}",
                         style: TextStyle(fontSize: 22),
                       ),
+                      SizedBox(height: 20,),
                       Text(
                         "Location: ${ms.userDetails[0].address}",
                         style: TextStyle(fontSize: 22),
                       ),
+                      SizedBox(height: 20,),
                       Text(
                         "No of items: ${ms.userDetails.length}",
                         style: TextStyle(fontSize: 22),
                       ),
+                      SizedBox(height: 20,),
                       Text(
                         "Total Price: \$${ms.calculateTotalPrice()}",
                         style: TextStyle(fontSize: 22),
                       ),
+                      SizedBox(height: 20,),
                       Gap(10),
                       Text(
                         "Choose payment method",
                         style: TextStyle(fontSize: 20),
                       ),
-                      Gap(10),
+                      Gap(20),
                       DropdownButton<PaymentModel>(
                         value: _selectedMethod,
                         onChanged: (PaymentModel? newValue) {
@@ -139,7 +146,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                       ),
                       Gap(30),
                       MaterialButton(
-                        color: Colors.red,
+                        color: Color(0xff8CC0DE),
                         minWidth: double.infinity,
                         onPressed: () {
                           Get.defaultDialog(
@@ -165,7 +172,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                                   Get.to(PaymentDone());
                                   Get.snackbar( "message","Thank you, Purchase Successful",
                                     duration: Duration(seconds: 2),
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.green,
                                     colorText: Colors.white
                                   );
                                 },
@@ -176,7 +183,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                         },
                         child: Text(
                           "Buy Now",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       )
                     ],

@@ -16,6 +16,8 @@ class HomePage extends StatelessWidget {
     return Consumer<ManageState>(builder: (context, ms, _) {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xff8CC0DE),
+          centerTitle: true,
           leading: GestureDetector(
             onTap: (){
               Get.bottomSheet(
@@ -55,8 +57,8 @@ class HomePage extends StatelessWidget {
             },
               child: Icon(Icons.menu)),
           title: Text("Book Store",style: TextStyle(
-            fontSize: 24,
-            color: Colors.green,
+            fontSize: 28,
+            color: Colors.black,
             fontWeight: FontWeight.bold
           ),),
           actions: [
@@ -64,7 +66,7 @@ class HomePage extends StatelessWidget {
               onTap: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>Bookmarks()));
               },
-                child: Icon(Icons.bookmark_sharp,size: 30,color: Color(0xff6C946F) ,)),
+                child: Icon(Icons.bookmark_sharp,size: 30,color: Colors.black,)),
             Gap(15),
             Stack(
               clipBehavior: Clip.none,
@@ -76,7 +78,7 @@ class HomePage extends StatelessWidget {
                   child: Icon(
                     Icons.shopping_cart,
                     size: 30,
-                    color: Color(0xffFFB200),
+                    color: Colors.black,
                   ),
                 ),
                 Positioned(
@@ -98,6 +100,12 @@ class HomePage extends StatelessWidget {
               ],
             ),
             Gap(10),
+            InkWell(
+              onTap: (){
+                Get.toNamed("/login");
+              },
+                child: Icon(Icons.logout,color: Colors.black,)),
+            Gap(10),
           ],
         ),
         body: Container(
@@ -105,9 +113,9 @@ class HomePage extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("New Arrivals",style: TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+                color: Colors.black,
               ),),
               Gap(10),
               Expanded(
@@ -132,6 +140,7 @@ class HomePage extends StatelessWidget {
                           Navigator.of(context).push(MaterialPageRoute(builder: (builder) => BookDetails(bookModel: allBooks[index],)));
                         },
                         child: Container(
+                          color: Color(0xff8CC0DE),
                           padding: EdgeInsets.all(10),
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                             Center(
@@ -147,15 +156,15 @@ class HomePage extends StatelessWidget {
                             ),
                             Text(
                               "${allBooks[index].author}",
-                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              style: TextStyle(fontSize: 16, color: Colors.black),
                             ),
                             Text(
                               "${allBooks[index].publishDate}",
-                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              style: TextStyle(fontSize: 16, color: Colors.black),
                             ),
                             Text(
                               "\$ ${allBooks[index].price}",
-                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              style: TextStyle(fontSize: 16, color: Colors.black),
                             ),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                               IconButton(
@@ -163,14 +172,14 @@ class HomePage extends StatelessWidget {
                                   bool added = ms.addCart(allBooks[index]);
                                   if (added) {
                                     Get.snackbar("Message","Product added to Cart",
-                                      backgroundColor: Colors.grey,
+                                      backgroundColor: Colors.green,
                                       colorText: Colors.white,
                                         duration: Duration(seconds: 1),
                                       snackPosition: SnackPosition.BOTTOM
                                     );
                                   } else {
                                     Get.snackbar("Message","Product already added to Cart",
-                                        backgroundColor: Colors.grey,
+                                        backgroundColor: Colors.red,
                                         colorText: Colors.white,
                                         duration: Duration(seconds: 1),
                                         snackPosition: SnackPosition.BOTTOM
@@ -180,7 +189,7 @@ class HomePage extends StatelessWidget {
                                 icon: Icon(
                                   Icons.shopping_cart_checkout,
                                   size: 30,
-                                  color: Colors.red,
+                                  color: Colors.black,
                                 ),
                               ),
                               IconButton(
@@ -189,7 +198,7 @@ class HomePage extends StatelessWidget {
                                   if (added) {
                                     Get.snackbar(
                                       "Message","Added to bookmarks",
-                                      backgroundColor: Colors.grey,
+                                      backgroundColor: Colors.green,
                                       colorText: Colors.white,
                                       snackPosition: SnackPosition.BOTTOM,
                                         duration: Duration(seconds: 1)
@@ -206,7 +215,7 @@ class HomePage extends StatelessWidget {
                                 icon: Icon(
                                   Icons.bookmark_sharp,
                                   size: 30,
-                                  color: ms.isBookMarked(allBooks[index]) ? Colors.green : Colors.grey,
+                                  color: ms.isBookMarked(allBooks[index]) ? Colors.red : Colors.black,
                                 ),
                               ),
                             ])

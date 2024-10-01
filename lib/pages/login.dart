@@ -3,6 +3,7 @@ import 'package:bookstore/manageState.dart';
 import 'package:bookstore/modeldata/datas.dart';
 import 'package:bookstore/pages/bottom_navBar.dart';
 import 'package:bookstore/pages/forgot_password.dart';
+import 'package:bookstore/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,27 +57,6 @@ class _LoginState extends State<Login> {
                           hintText: "Password",
                         ),
                       ),
-                      MaterialButton(
-                        minWidth: 300,
-                        color: Colors.blue,
-                        onPressed: () async {
-                          User? user = await _auth.signInWithEmailAndPassword(
-                              _emailController.text, _passwordController.text);
-                          if (user != null) {
-                            Get.snackbar("Success", "Login Successful");
-                            Get.offAllNamed('/home');
-                          } else {
-                            Get.snackbar(
-                              "Sorry",
-                              "There has been a problem, try again",
-                            );
-                          }
-                        },
-                        child: Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -100,17 +80,21 @@ class _LoginState extends State<Login> {
                   minWidth: MediaQuery.of(context).size.width * 0.9,
                   height: 40,
                   color: Colors.blue,
-                  onPressed: () {
-                    if (_formKey.currentState?.validate() ?? false) {
-                      if (_emailController.text == userInfo[0].email) {
-
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                            builder: (context) => bottomnavbar(),
-                          ),
-                              (route) => false,
-                        );
-                      }
+                  onPressed: () async {
+                    User? user = await _auth.signInWithEmailAndPassword(
+                        _emailController.text, _passwordController.text);
+                    if (user != null) {
+                      Get.snackbar(
+                          backgroundColor: Colors.white,
+                          "Success",
+                          "Sign In Successful");
+                      Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>HomePage()));
+                    } else {
+                      Get.snackbar(
+                        backgroundColor: Colors.white,
+                        "Sorry",
+                        "Your email or Password may be wrong",
+                      );
                     }
                   },
                   child: Text(

@@ -13,7 +13,9 @@ class Bookmarks extends StatelessWidget {
     return Consumer<ManageState>(builder: (context, ms, _){
       return Scaffold(
         appBar: AppBar(
-          title: Text("BookMarks",style: myStyle(24,Colors.green,FontWeight.bold),),
+          backgroundColor: Color(0xff8CC0DE),
+          title: Text("BookMarks",style: myStyle(24,Colors.black,FontWeight.bold),),
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Container(

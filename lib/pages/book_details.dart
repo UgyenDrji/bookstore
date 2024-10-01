@@ -13,7 +13,9 @@ class BookDetails extends StatelessWidget {
     return Consumer<ManageState>(builder: (context, ms, _){
       return Scaffold(
         appBar: AppBar(
-          title: Text("${bookModel.bookName}",style: myStyle(24,Colors.green,FontWeight.bold),),
+          backgroundColor: Color(0xff8CC0DE),
+          centerTitle: true,
+          title: Text("${bookModel.bookName}",style: myStyle(24,Colors.black,FontWeight.bold),),
         ),
         body: SingleChildScrollView(
           child: Container(

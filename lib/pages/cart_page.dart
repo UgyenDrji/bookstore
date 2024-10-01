@@ -14,7 +14,9 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Cart",style: myStyle(24,Colors.green,FontWeight.bold),),
+          backgroundColor: Color(0xff8CC0DE),
+          title: Text("Cart",style: myStyle(24,Colors.black,FontWeight.bold),),
+          centerTitle: true,
         ),
         body: Consumer<ManageState>(
           builder: (context, ms, _) {
@@ -36,7 +38,12 @@ class CartPage extends StatelessWidget {
                               width:
                               MediaQuery.of(context).size.width * 1,
                               padding: EdgeInsets.all(10),
-                              color: Colors.orangeAccent.withOpacity(0.3),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                // color: Color(0xff8CC0DE)
+                                color: index % 2 == 0 ? Color(0xff8CC0DE) : Color(0xffB0D9B1),
+                                border: Border.all(color: Color(0xffB2C8BA),width: 3),
+                              ),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Image(image: AssetImage("${ms.cartBooks[index].img}"),width: 100,),
@@ -117,7 +124,7 @@ class CartPage extends StatelessWidget {
                 Container(
                   height: 150,
                   width: double.infinity,
-                  color: Colors.blue,
+                  color: Color(0xff8CC0DE),
                   child: Center(
                     child: Column(
                       children: [
@@ -136,13 +143,13 @@ class CartPage extends StatelessWidget {
                             width: MediaQuery.of(context).size.width *0.8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors.red
+                              color: Color(0xffB0D9B1),
                             ),
                             child: Center(
                               child: Text("CheckOut",style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white
+                                color: Colors.black
                               ),),
                             ),
                           ),

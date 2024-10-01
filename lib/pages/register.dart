@@ -1,8 +1,6 @@
 import 'package:bookstore/authentication/auth_services.dart';
 import 'package:bookstore/constant.dart';
 import 'package:bookstore/manageState.dart';
-import 'package:bookstore/modelclass/model_class.dart';
-import 'package:bookstore/modeldata/datas.dart';
 import 'package:bookstore/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +33,7 @@ class _RegistrationState extends State<Registration> {
     return Consumer<ManageState>(builder: (context, ms, _){
       return Scaffold(
         appBar: AppBar(
-          title: Text("Registration",style: myStyle(24,Colors.green,FontWeight.bold)),
+          title: Text("Create an Account",style: myStyle(27,Colors.red,FontWeight.bold)),
           centerTitle: true,
           // centerTitle: true,
         ),
@@ -175,21 +173,20 @@ class _RegistrationState extends State<Registration> {
                       // ),
 
                       MaterialButton(
-                        minWidth: 300,
-                        color: Colors.blue,
+                        minWidth: 400,
+                        color: Colors.redAccent,
                         onPressed: () async {
                           User? user = await _auth.signUpWithEmailAndPassword(
                               _emailController.text, _passwordController.text);
                           if (user != null) {
                             Get.snackbar("Success", "Registration Successful");
-                            Get.offAllNamed('/home');
+                            Get.offAllNamed('/login');
                           } else {
                             Get.snackbar(
                               "Sorry",
                               "There has been a problem, try again",
                             );
                           }
-                          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>Login()));
                         },
                         child: Text(
                           "Register",
@@ -198,14 +195,19 @@ class _RegistrationState extends State<Registration> {
                       ),
 
                       MaterialButton(
-                        minWidth: 300,
-                        color: Colors.red,
+                        minWidth: 100,
+                        color: Colors.redAccent,
                         onPressed: () async {
                           _auth.signInWithGoogle();
                         },
-                        child: Text(
-                          "Login with Google",
-                          style: TextStyle(color: Colors.white),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.g_mobiledata_sharp,color: Colors.white,),
+                            Text(
+                              "Login with Google",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
                         ),
                       ),
                     ],

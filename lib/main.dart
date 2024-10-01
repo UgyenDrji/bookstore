@@ -1,6 +1,8 @@
 import 'package:bookstore/firebase_options.dart';
 import 'package:bookstore/manageState.dart';
+import 'package:bookstore/pages/home_page.dart';
 import 'package:bookstore/pages/login.dart';
+import 'package:bookstore/pages/register.dart';
 import 'package:bookstore/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: '/splash',
+      getPages: [
+
+        GetPage(name: '/splash', page: ()=>SplashScreen()),
+        GetPage(name: '/home', page: ()=>HomePage()),
+        GetPage(name: "/login", page: ()=>Login())
+      ],
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

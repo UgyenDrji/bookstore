@@ -23,7 +23,9 @@ class _UserInfoState extends State<UserInfo> {
     return Consumer<ManageState>(builder: (context, ms, _){
       return Scaffold(
         appBar: AppBar(
-          title: Text("Delivery",style: myStyle(24,Colors.green,FontWeight.bold),),
+          backgroundColor: Color(0xff8CC0DE),
+          centerTitle: true,
+          title: Text("Delivery",style: myStyle(24,Colors.black,FontWeight.bold),),
           // centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -82,12 +84,13 @@ class _UserInfoState extends State<UserInfo> {
                       return null;
                     },
                   ),
+                  SizedBox(height: 20,),
                   Text(
                     "Total Price: \$${ms.calculateTotalPrice()}",
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green),
+                        color: Colors.black),
                   ),
                   InkWell(
                     onTap: () {
@@ -110,7 +113,7 @@ class _UserInfoState extends State<UserInfo> {
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Colors.red,
+                        color: Color(0xff8CC0DE),
                       ),
                       child: Center(
                         child: Text(
@@ -118,7 +121,7 @@ class _UserInfoState extends State<UserInfo> {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
